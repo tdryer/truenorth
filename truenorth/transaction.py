@@ -26,6 +26,7 @@ class TransactionType(enum.Enum):
     tap_out = 2
     transfer = 3
     auto_loaded = 4
+    purchase = 5
 
 
 class Product(enum.Enum):
@@ -70,6 +71,8 @@ def _parse_transaction_type(string):
         return TransactionType.transfer
     elif string == 'AutoLoaded':
         return TransactionType.auto_loaded
+    elif string.startswith('Purchase at '):
+        return TransactionType.purchase
     else:
         raise ValueError('Unknown transaction type: {}'.format(repr(string)))
 
