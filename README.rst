@@ -33,4 +33,11 @@ Load a CSV file and print each time you tapped-in::
 
 Do the same thing using the included command line tool::
 
-  $ truenorth my_compass_card_history.csv --transaction-type tap_in
+  truenorth my_compass_card_history.csv --transaction-type tap_in
+
+Find the total amount spent on tap-ins, tap-outs, and transfers::
+
+  truenorth my_compass_card_history.csv --sum-amounts \
+      --transaction-type tap_in \
+      --transaction-type tap_out \
+      --transaction-type transfer
