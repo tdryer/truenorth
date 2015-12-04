@@ -3,9 +3,11 @@
 import datetime
 import io
 
+import pytest
+
 from truenorth.transaction import (
     parse_csv_file, Transaction, Location, TransactionType, Product,
-    _parse_transaction
+    _parse_transaction, _parse_amount
 )
 
 
@@ -52,3 +54,13 @@ def test_parse_csv_file():
             0
         ),
     ]
+
+
+@pytest.mark.parametrize("amount_string,cents_int", [
+    ('0', 0),
+    ('1.05', 105),
+    ('-2.1', -210),
+    ('100', 10000),
+])
+def test_parse_amount(amount_string, cents_int):
+    assert _parse_amount(amount_string) == cents_int

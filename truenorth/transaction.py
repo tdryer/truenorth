@@ -2,6 +2,7 @@
 
 import csv
 import datetime
+import decimal
 import enum
 
 
@@ -85,8 +86,8 @@ def _parse_location(string):
 
 
 def _parse_amount(string):
-    """Return integer amount parsed from string."""
-    return int(string.replace('.', ''))
+    """Return amount in integer cents parsed from string."""
+    return int(decimal.Decimal(string) * 100)
 
 
 def _parse_product(string):
